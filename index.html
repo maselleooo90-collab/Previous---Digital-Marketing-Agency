@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positivus - Digital Marketing Agency</title>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lime: '#B9FF66',
+                        dark: '#191A23',
+                        lightgrey: '#F3F3F3',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '45px',
+                        '3xl': '30px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #191A23;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Hard Neo-brutalist Offset Shadow */
+        .shadow-custom {
+            box-shadow: 0px 5px 0px #191A23;
+        }
+
+        .shadow-custom-lg {
+            box-shadow: 0px 8px 0px #191A23;
+        }
+
+        .shadow-custom-hover {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .shadow-custom-hover:hover {
+            box-shadow: 0px 8px 0px #191A23;
+            transform: translateY(-3px);
+        }
+
+        /* Speech bubble arrow for testimonials */
+        .speech-bubble {
+            position: relative;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 60px;
+            border-width: 20px 20px 0 0;
+            border-style: solid;
+            border-color: #191A23 transparent transparent transparent;
+            display: block;
+            width: 0;
+            z-index: 10;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -23px;
+            left: 58px;
+            border-width: 22px 22px 0 0;
+            border-style: solid;
+            border-color: #B9FF66 transparent transparent transparent;
+            display: block;
+            width: 0;
+            z-index: 9;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F3F3F3;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #191A23;
+            border-radius: 4px;
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-dark antialiased">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div id="logo">
+                <a href="#" class="flex items-center gap-2 group focus:outline-none" aria-label="Positivus Home">
+                    <div id="logo"
+                        class="w-8 h-8 bg-dark rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                        <svg class="w-5 h-5 text-lime fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl sm:text-3xl font-bold tracking-tight text-dark">Positivus</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden lg:flex items-center space-x-8 text-base font-normal" id="nav-links">
+                <a id="nav-item" href="#about" class="hover:text-lime-600 transition-colors">About us</a>
+                <a id="nav-item" href="#services" class="hover:text-lime-600 transition-colors">Services</a>
+                <a id="nav-item" href="#use-cases" class="hover:text-lime-600 transition-colors">Use Cases</a>
+                <a id="nav-item" href="#process" class="hover:text-lime-600 transition-colors">Pricing</a>
+                <a id="nav-item" href="#team" class="hover:text-lime-600 transition-colors">Blog</a>
+            </div>
+
+            <!-- Desktop Action Button -->
+            <div id="btn-1" class="hidden lg:flex items-center">
+                <a href="#contact"
+                    class="px-6 py-3 border border-dark rounded-xl text-dark font-medium hover:bg-dark hover:text-white transition-all shadow-custom hover:shadow-none">
+                    Request a quote
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-dark hover:bg-gray-100 focus:outline-none"
+                aria-label="Toggle Navigation Menu">
+                <svg id="menu-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-dark px-6 pt-4 pb-6 space-y-4">
+            <a href="#about" class="block text-lg font-medium py-2 border-b border-gray-100 hover:text-lime-600">About
+                us</a>
+            <a href="#services"
+                class="block text-lg font-medium py-2 border-b border-gray-100 hover:text-lime-600">Services</a>
+            <a href="#use-cases" class="block text-lg font-medium py-2 border-b border-gray-100 hover:text-lime-600">Use
+                Cases</a>
+            <a href="#process"
+                class="block text-lg font-medium py-2 border-b border-gray-100 hover:text-lime-600">Pricing</a>
+            <a href="#team" class="block text-lg font-medium py-2 border-b border-gray-100 hover:text-lime-600">Blog</a>
+            <a href="#contact"
+                class="block text-center w-full py-3 mt-4 border border-dark rounded-xl text-dark font-medium bg-lime shadow-custom">
+                Request a quote
+            </a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="about" style="position: relative; top: -27px;
+" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-16 md:pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Hero Left Content -->
+            <div class="space-y-7">
+                <h1 id="text-1" class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-tight">
+                    Navigating the digital landscape for success
+                </h1>
+                <p id="paragraph" class="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-xl">
+                    Our digital marketing agency helps businesses grow and succeed online through a range of services
+                    including SEO, PPC, social media marketing, and content creation.
+                </p>
+                <div id="btn-2" class="pt-2">
+                    <a href="#contact"
+                        class="inline-block w-full sm:w-auto text-center px-8 py-5 bg-dark text-white text-lg font-medium rounded-xl border border-dark shadow-custom hover:bg-lime hover:text-dark hover:border-dark transition-all duration-200">
+                        Book a consultation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right Graphic (IMAGE SEQUENCE 01) -->
+            <div class="flex justify-center items-center">
+                <img id="hero-img" src="/image.png" alt="Hero Illustration" class="w-full h-auto">
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: PARTNER LOGOS MARQUEE -->
+    <section class="w-full py-8 border-y border-gray-200 overflow-hidden bg-white mb-16" style="    position: relative;
+    top: -77px;">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- 
+              ========================================================================
+              IMAGE SEQUENCE ID: 02_logo_amazon, 02_logo_dribbble, 02_logo_hubspot, etc.
+              User Note: Swap individual partner logos using images if preferred:
+              <img id="02_logo_amazon" src="amazon.svg" alt="Amazon Logo">
+              ========================================================================
+            -->
+            <div  id="partner-logos" class="flex items-center justify-between gap-8 md:gap-12 grayscale opacity-80   flex-wrap md:flex-nowrap">
+
+                <!-- Amazon -->
+                <img src="/assets/Company logo.png" alt="Amazon Logo">
+                <!-- Dribbble -->
+                <img src="/assets/Company logo (1).png" alt="Dribbble Logo">
+
+
+                <!-- HubSpot -->
+                <img src="/assets/Company logo (2).png" alt="HubSpot Logo">
+
+
+                <!-- Notion -->
+                <img src="/assets/Company logo (3).png" alt="Notion Logo">
+
+
+                <!-- Netflix -->
+                <img src="/assets/Company logo (4).png" alt="Netflix Logo">
+
+
+                <!-- Zoom -->
+                <img src="/assets/Company logo (5).png" alt="Zoom Logo">
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: SERVICES SECTION -->
+    <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-16">
+            <span
+                id="service" class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Services
+            </span>
+            <p id="paragraph2" class="text-base sm:text-lg text-gray-700 max-w-2xl">
+                At our digital marketing agency, we offer a range of services to help businesses grow and succeed
+                online. These services include:
+            </p>
+        </div>
+
+        <!-- 2x3 Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Card 1: Search Engine Optimization (White card, Lime title) -->
+            <div
+            id="left-line1"
+                class="bg-lightgrey border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Search
+                            engine</span>
+                        <br>
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">optimization</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-dark flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-lime transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-dark group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_seo -->
+                    <div id="03_service_seo" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <rect x="20" y="40" width="120" height="90" rx="12" fill="#FFFFFF" stroke="#191A23"
+                                stroke-width="4" />
+                            <path d="M 35 70 L 65 100 L 95 80 L 125 110" stroke="#B9FF66" stroke-width="8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="125" cy="110" r="6" fill="#191A23" />
+                            <path d="M 100 55 L 125 55 L 125 80" stroke="#191A23" stroke-width="4" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Pay-per-click Advertising (Lime card, White title) -->
+            <div
+            id="right-line1"
+
+                class="bg-lime border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Pay-per-click</span>
+                        <br>
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">advertising</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-dark flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-lime transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-dark group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_ppc -->
+                    <div id="03_service_ppc" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <rect x="25" y="30" width="110" height="100" rx="14" fill="#FFFFFF" stroke="#191A23"
+                                stroke-width="4" />
+                            <path d="M 50 65 Q 80 40 110 65" stroke="#191A23" stroke-width="4" />
+                            <circle cx="80" cy="85" r="18" fill="#B9FF66" stroke="#191A23" stroke-width="3" />
+                            <path d="M 80 75 L 80 95 M 72 85 L 88 85" stroke="#191A23" stroke-width="3" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Social Media Marketing (Dark card, Lime title) -->
+            <div
+            id="left-line2"
+
+                class="bg-dark text-white border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Social
+                            Media</span>
+                        <br>
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Marketing</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-dark transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-white group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_smm -->
+                    <div id="03_service_smm" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <circle cx="50" cy="50" r="22" fill="#B9FF66" stroke="#FFFFFF" stroke-width="3" />
+                            <circle cx="110" cy="60" r="18" fill="#FFFFFF" stroke="#B9FF66" stroke-width="3" />
+                            <circle cx="80" cy="115" r="25" fill="#B9FF66" stroke="#FFFFFF" stroke-width="3" />
+                            <path d="M 68 62 L 95 68 M 65 65 L 72 95 M 98 75 L 88 95" stroke="#FFFFFF" stroke-width="3"
+                                stroke-dasharray="4 4" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Email Marketing (White card, Lime title) -->
+            <div
+            id="right-line2"
+
+                class="bg-lightgrey border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Email</span>
+                        <br>
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Marketing</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-dark flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-lime transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-dark group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_email -->
+                    <div id="03_service_email" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <rect x="25" y="45" width="110" height="75" rx="10" fill="#FFFFFF" stroke="#191A23"
+                                stroke-width="4" />
+                            <path d="M 25 50 L 80 85 L 135 50" stroke="#191A23" stroke-width="4" />
+                            <path d="M 60 25 L 80 40 L 100 25" stroke="#B9FF66" stroke-width="5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Content Creation (Lime card, White title) -->
+            <div
+            id="left-line3"
+                class="bg-lime border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Content</span>
+                        <br>
+                        <span
+                            class="bg-white text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Creation</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-dark flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-lime transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-dark group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_content -->
+                    <div id="03_service_content" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <rect x="35" y="30" width="90" height="105" rx="10" fill="#FFFFFF" stroke="#191A23"
+                                stroke-width="4" />
+                            <line x1="55" y1="55" x2="105" y2="55" stroke="#191A23" stroke-width="4"
+                                stroke-linecap="round" />
+                            <line x1="55" y1="75" x2="95" y2="75" stroke="#191A23" stroke-width="4"
+                                stroke-linecap="round" />
+                            <line x1="55" y1="95" x2="80" y2="95" stroke="#191A23" stroke-width="4"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Analytics and Tracking (Dark card, Lime title) -->
+            <div id="right-line3"
+                class="bg-dark text-white border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 flex flex-col justify-between shadow-custom shadow-custom-hover relative overflow-hidden">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="space-y-1">
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Analytics
+                            and</span>
+                        <br>
+                        <span
+                            class="bg-lime text-dark text-2xl sm:text-3xl font-semibold px-2 py-1 rounded-md inline-block">Tracking</span>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mt-6">
+                    <a href="#contact" class="flex items-center gap-4 group focus:outline-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-dark transform group-hover:rotate-45 transition-transform"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                        <span class="hidden sm:inline-block font-medium text-lg text-white group-hover:underline">Learn
+                            more</span>
+                    </a>
+
+                    <!-- IMAGE SEQUENCE ID: 03_service_analytics -->
+                    <div id="03_service_analytics" class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 160 160" fill="none">
+                            <rect x="25" y="35" width="110" height="90" rx="12" fill="#191A23" stroke="#FFFFFF"
+                                stroke-width="3" />
+                            <rect x="40" y="80" width="18" height="30" rx="3" fill="#B9FF66" />
+                            <rect x="71" y="60" width="18" height="50" rx="3" fill="#FFFFFF" />
+                            <rect x="102" y="45" width="18" height="65" rx="3" fill="#B9FF66" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: CTA BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div
+            class="bg-lightgrey border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-custom">
+
+            <div class="max-w-xl space-y-6">
+                <h3 id="text-3" class="text-3xl sm:text-4xl font-semibold leading-tight">
+                    Let’s make things happen
+                </h3>
+                <p id="para-2" class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    Contact us today to learn more about how our digital marketing services can help your business grow
+                    and succeed online.
+                </p>
+                <div>
+                    <a id="btn-4" href="#contact"
+                        class="inline-block px-8 py-4 bg-dark text-white font-medium rounded-xl hover:bg-lime hover:text-dark transition-all border border-dark shadow-custom">
+                        Get your free proposal
+                    </a>
+                </div>
+            </div>
+
+            <!-- IMAGE SEQUENCE ID: 04_cta_banner_illustration -->
+            <div id="04_cta_banner_illustration" class="w-full max-w-xs sm:max-w-sm lg:max-w-md flex justify-center">
+              <img id="service-img" src="/assets/Frame 19.png" alt="">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CASE STUDIES SECTION -->
+    <section id="use-cases" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+            <span
+            id="text-6"
+                class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Case Studies
+            </span>
+            <p id="para-4" class="text-base sm:text-lg text-gray-700 max-w-2xl overflow-x-hidden">
+                Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies.
+            </p>
+        </div>
+
+        <!-- Dark Case Container -->
+        <div
+        id="container"
+            class="bg-dark text-white rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 lg:p-16 border border-dark shadow-custom">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-700">
+
+                <!-- Column 1 -->
+                <div class="pt-6 md:pt-0 md:pr-6 flex flex-col justify-between space-y-6">
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        For a local restaurant chain, we implemented a targeted PPC campaign that resulted in a 50%
+                        increase in website traffic and a 25% increase in reservations.
+                    </p>
+                    <a href="#" class="inline-flex items-center gap-2 text-lime font-medium hover:underline group">
+                        <span>Learn more</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="pt-8 md:pt-0 md:px-8 flex flex-col justify-between space-y-6">
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        For a B2B software company, we developed an SEO strategy that increased organic search rankings
+                        for key terms by 200% and generated a 40% rise in leads.
+                    </p>
+                    <a href="#" class="inline-flex items-center gap-2 text-lime font-medium hover:underline group">
+                        <span>Learn more</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="pt-8 md:pt-0 md:pl-8 flex flex-col justify-between space-y-6">
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        For a national retail chain, we created a social media marketing campaign that increased
+                        followers by 25% and generated a 20% increase in online sales.
+                    </p>
+                    <a href="#" class="inline-flex items-center gap-2 text-lime font-medium hover:underline group">
+                        <span>Learn more</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: OUR WORKING PROCESS (ACCORDION) -->
+    <section id="process" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+            <span
+            id="text-7"
+                class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Our Working Process
+            </span>
+            <p id="para-7" class="text-base sm:text-lg text-gray-700 max-w-xl">
+                Step-by-Step Guide to Achieving Your Business Goals
+            </p>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="space-y-6 " id="accordion-container">
+
+            <!-- Item 01 (Expanded by default) -->
+            <div
+            id="QNA-1-RIGHT"
+                class="overflow-x-hidden overflow-y-hidden accordion-item bg-lime border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">01</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Consultation</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">-</span>
+                    </div>
+                </button>
+                <div class="accordion-content mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    During the initial consultation, we will discuss your business goals and objectives, target
+                    audience, and current marketing efforts. This will allow us to understand your needs and tailor our
+                    services to best fit your requirements.
+                </div>
+            </div>
+
+            <!-- Item 02 -->
+            <div
+                id="QNA-2-LEFT"
+                class="accordion-item bg-lightgrey border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">02</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Research and Strategy Development</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">+</span>
+                    </div>
+                </button>
+                <div
+                    class="accordion-content hidden mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    We conduct thorough market research, analyze competitor positioning, and build a comprehensive
+                    multi-channel digital roadmap aligned directly with your target KPIs.
+                </div>
+            </div>
+
+            <!-- Item 03 -->
+            <div
+                id="QNA-3-RIGHT"
+                class="accordion-item bg-lightgrey border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">03</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Implementation</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">+</span>
+                    </div>
+                </button>
+                <div
+                    class="accordion-content hidden mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    Our team executes advertising campaigns, optimizes content architecture, and rolls out custom
+                    landing pages with precise conversion tracking setups.
+                </div>
+            </div>
+
+            <!-- Item 04 -->
+            <div
+            id="QNA-4-LEFT"
+                class="accordion-item bg-lightgrey border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">04</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Optimization and Monitoring</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">+</span>
+                    </div>
+                </button>
+                <div
+                    class="accordion-content hidden mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    Continuous A/B testing, keyword adjustments, and budget realignments ensure maximum ROI across all
+                    active campaigns in real-time.
+                </div>
+            </div>
+
+            <!-- Item 05 -->
+            <div
+                id="QNA-5-RIGHT"
+                class="accordion-item bg-lightgrey border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">05</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Reporting and Communication</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">+</span>
+                    </div>
+                </button>
+                <div
+                    class="accordion-content hidden mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    Transparent monthly reports and regular sync meetings keep you fully informed about growth metrics,
+                    lead volume, and budget effectiveness.
+                </div>
+            </div>
+
+            <!-- Item 06 -->
+            <div
+                id="QNA-6-LEFT"
+                class="accordion-item bg-lightgrey border border-dark rounded-[30px] p-8 sm:p-10 shadow-custom transition-all duration-300">
+                <button class="accordion-header w-full flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center gap-6">
+                        <span class="text-4xl sm:text-5xl font-bold">06</span>
+                        <span class="text-xl sm:text-2xl font-semibold">Continual Improvement</span>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-full border border-dark bg-lightgrey flex items-center justify-center font-bold text-2xl shadow-sm">
+                        <span class="accordion-icon">+</span>
+                    </div>
+                </button>
+                <div
+                    class="accordion-content hidden mt-6 pt-6 border-t border-dark/20 text-base sm:text-lg text-gray-800">
+                    We refine overall strategies according to emerging market trends, consumer shifts, and new digital
+                    opportunities to maintain your competitive edge.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 7: TEAM SECTION -->
+    <section id="team" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+            <span
+            id="text-8"
+                class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Team
+            </span>
+            <p 
+id="para-8"
+            class="text-base sm:text-lg text-gray-700 max-w-xl">
+                Meet the skilled and experienced team behind our successful digital marketing strategies
+            </p>
+        </div>
+
+        <!-- 6 Team Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+
+            <!-- Member 1 -->
+            <div id="team-card-1" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_1 -->
+                    <div id="05_team_member_1"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">John Smith</h4>
+                        <p class="text-sm text-gray-600">CEO and Founder</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    10+ years of experience in digital marketing and strategy. Expertise in PPC, SEO, and business
+                    growth.
+                </p>
+            </div>
+
+            <!-- Member 2 -->
+            <div id="team-card-2" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_2 -->
+                    <div id="05_team_member_2"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">Jane Doe</h4>
+                        <p class="text-sm text-gray-600">Director of Operations</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    7+ years of experience in project management and operations. Skilled in leadership and workflow
+                    optimization.
+                </p>
+            </div>
+
+            <!-- Member 3 -->
+            <div id="team-card-3" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_3 -->
+                    <div id="05_team_member_3"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">Michael Brown</h4>
+                        <p class="text-sm text-gray-600">Senior SEO Specialist</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    5+ years of experience in SEO and content strategy. Proficient in technical audits and link
+                    building.
+                </p>
+            </div>
+
+            <!-- Member 4 -->
+            <div id="team-card-4" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_4 -->
+                    <div id="05_team_member_4"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">Emily Johnson</h4>
+                        <p class="text-sm text-gray-600">PPC Manager</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    3+ years of experience in paid search advertising. Skilled in Google Ads campaign setup and
+                    conversion rate optimization.
+                </p>
+            </div>
+
+            <!-- Member 5 -->
+            <div id="team-card-5" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_5 -->
+                    <div id="05_team_member_5"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">Brian Williams</h4>
+                        <p class="text-sm text-gray-600">Social Media Specialist</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    4+ years of experience in social media management. Passionate about community engagement and viral
+                    campaigns.
+                </p>
+            </div>
+
+            <!-- Member 6 -->
+            <div id="team-card-6" class="bg-white border border-dark rounded-[30px] p-8 shadow-custom relative">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"
+                    class="absolute top-8 right-8 w-9 h-9 bg-dark text-lime rounded-full flex items-center justify-center hover:bg-lime hover:text-dark transition-colors"
+                    aria-label="LinkedIn profile">
+                    <span class="font-bold text-sm">in</span>
+                </a>
+                <div class="flex items-end gap-5 mb-6">
+                    <!-- IMAGE SEQUENCE ID: 05_team_member_6 -->
+                    <div id="05_team_member_6"
+                        class="w-24 h-24 rounded-[20px] bg-lime border border-dark flex items-center justify-center overflow-hidden">
+                        <svg class="w-16 h-16 text-dark" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold">Sarah Kim</h4>
+                        <p class="text-sm text-gray-600">Content Creator</p>
+                    </div>
+                </div>
+                <hr class="border-gray-300 my-4">
+                <p class="text-base text-gray-700">
+                    2+ years of experience in content creation and copywriting. Skilled in storytelling and brand tone
+                    development.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="text-right">
+            <a id="btn-10" href="#contact"
+                class="inline-block px-8 py-4 bg-dark text-white font-medium rounded-xl hover:bg-lime hover:text-dark transition-all border border-dark shadow-custom">
+                See all team
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 8: TESTIMONIALS SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+            <span
+            id="span-8"
+                class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Testimonials
+            </span>
+            <p id="para-10" class="text-base sm:text-lg text-gray-700 max-w-xl">
+                Hear from Our Satisfied Clients: Read Our Testimonials to Learn More About Our Digital Marketing
+                Services
+            </p>
+        </div>
+
+        <!-- Dark Slider Container -->
+        <div
+        id="container-2"
+            class="bg-dark text-white rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 lg:p-16 border border-dark shadow-custom">
+
+            <div class="overflow-hidden relative min-h-[300px]">
+                <!-- Testimonials Track -->
+                <div id="testimonial-track" class="flex transition-transform duration-500 ease-in-out">
+
+                    <!-- Slide 1 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="border border-lime rounded-[30px] p-8 sm:p-10 speech-bubble bg-dark relative mb-12">
+                            <p class="text-base sm:text-lg text-gray-200 leading-relaxed">
+                                "We have been working with Positivus for the past year and have seen a significant
+                                increase in our website traffic and leads from their marketing efforts. Their team is
+                                professional, responsive, and truly cares about the success of our business."
+                            </p>
+                        </div>
+                        <div class="pl-14">
+                            <h5 class="text-lg font-bold text-lime">John Smith</h5>
+                            <p class="text-sm text-gray-400">Marketing Director at XYZ Corp</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="border border-lime rounded-[30px] p-8 sm:p-10 speech-bubble bg-dark relative mb-12">
+                            <p class="text-base sm:text-lg text-gray-200 leading-relaxed">
+                                "Positivus completely transformed our online presence. Within three months of running
+                                search campaigns, our organic conversion rates doubled. I couldn't recommend their team
+                                more highly!"
+                            </p>
+                        </div>
+                        <div class="pl-14">
+                            <h5 class="text-lg font-bold text-lime">Sarah Jenkins</h5>
+                            <p class="text-sm text-gray-400">Founder & CEO at GreenTech</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="border border-lime rounded-[30px] p-8 sm:p-10 speech-bubble bg-dark relative mb-12">
+                            <p class="text-base sm:text-lg text-gray-200 leading-relaxed">
+                                "The level of strategy and execution Positivus brings is unmatched. Their continuous
+                                monitoring and transparent reporting keep us confident in every marketing dollar spent."
+                            </p>
+                        </div>
+                        <div class="pl-14">
+                            <h5 class="text-lg font-bold text-lime">David Ross</h5>
+                            <p class="text-sm text-gray-400">VP of Growth at Apex Retail</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <div class="flex items-center justify-between max-w-xs mx-auto mt-8 pt-4">
+                <button id="prev-btn" class="text-white hover:text-lime text-2xl focus:outline-none p-2"
+                    aria-label="Previous testimonial">
+                    &larr;
+                </button>
+
+                <div class="flex items-center space-x-3" id="carousel-dots">
+                    <span class="dot w-3 h-3 rounded-full bg-lime cursor-pointer"></span>
+                    <span class="dot w-3 h-3 rounded-full bg-gray-600 cursor-pointer"></span>
+                    <span class="dot w-3 h-3 rounded-full bg-gray-600 cursor-pointer"></span>
+                </div>
+
+                <button id="next-btn" class="text-white hover:text-lime text-2xl focus:outline-none p-2"
+                    aria-label="Next testimonial">
+                    &rarr;
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 9: CONTACT US SECTION -->
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section Header Badge -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-12">
+            <span
+            id="span-9"
+                class="bg-lime text-dark text-3xl sm:text-4xl font-semibold px-3 py-1 rounded-md border border-dark shadow-sm">
+                Contact Us
+            </span>
+            <p id="para-11" class="text-base sm:text-lg text-gray-700 max-w-xl">
+                Connect with Us: Let's Discuss Your Digital Marketing Needs
+            </p>
+        </div>
+
+        <!-- Contact Box -->
+        <div
+        id="contact-box"
+            class="bg-lightgrey border border-dark rounded-[30px] sm:rounded-[45px] p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row justify-between items-center relative overflow-hidden shadow-custom">
+
+            <!-- Left Form Container -->
+            <div class="w-full lg:max-w-xl space-y-6 z-10">
+
+                <form id="contact-form" class="space-y-6">
+                    <!-- Radio buttons -->
+                    <div class="flex items-center space-x-8">
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" name="purpose" value="say-hi"
+                                class="form-radio text-lime focus:ring-lime h-5 w-5 border-dark" checked>
+                            <span class="ml-3 text-lg font-medium text-dark">Say Hi</span>
+                        </label>
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="radio" name="purpose" value="get-quote"
+                                class="form-radio text-lime focus:ring-lime h-5 w-5 border-dark">
+                            <span class="ml-3 text-lg font-medium text-dark">Get a Quote</span>
+                        </label>
+                    </div>
+
+                    <!-- Name Field -->
+                    <div>
+                        <label class="block text-base font-medium text-dark mb-2">Name*</label>
+                        <input type="text" required placeholder="John Doe"
+                            class="w-full px-5 py-4 rounded-xl border border-dark bg-white focus:outline-none focus:ring-2 focus:ring-lime">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label class="block text-base font-medium text-dark mb-2">Email*</label>
+                        <input type="email" required placeholder="john@example.com"
+                            class="w-full px-5 py-4 rounded-xl border border-dark bg-white focus:outline-none focus:ring-2 focus:ring-lime">
+                    </div>
+
+                    <!-- Message Field -->
+                    <div>
+                        <label class="block text-base font-medium text-dark mb-2">Message*</label>
+                        <textarea rows="4" required placeholder="Tell us about your project..."
+                            class="w-full px-5 py-4 rounded-xl border border-dark bg-white focus:outline-none focus:ring-2 focus:ring-lime"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 bg-dark text-white font-medium text-lg rounded-xl hover:bg-lime hover:text-dark transition-all border border-dark shadow-custom">
+                        Send Message
+                    </button>
+                </form>
+
+            </div>
+
+            <!-- Right Graphic (IMAGE SEQUENCE 06) -->
+            <!-- 
+              ========================================================================
+              IMAGE SEQUENCE ID: 06_contact_illustration
+              User Note: Replace graphic below with Contact image if needed:
+              <img id="06_contact_illustration" src="contact_graphic.png" alt="Contact Illustration">
+              ========================================================================
+            -->
+            <div id="06_contact_illustration" class="hidden lg:flex w-full lg:w-1/2 justify-center items-center p-8">
+                <svg class="w-full h-auto max-w-sm" viewBox="0 0 350 350" fill="none">
+                    <circle cx="175" cy="175" r="140" fill="#B9FF66" stroke="#191A23" stroke-width="4" />
+                    <path d="M 175 35 L 210 140 L 315 175 L 210 210 L 175 315 L 140 210 L 35 175 L 140 140 Z"
+                        fill="#191A23" />
+                    <circle cx="175" cy="175" r="30" fill="#FFFFFF" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 10: FOOTER SECTION -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+        <div class="bg-dark text-white rounded-t-[30px] sm:rounded-t-[45px] p-8 sm:p-12 lg:p-16 space-y-12">
+
+            <!-- Top Footer Bar: Logo, Nav, Socials -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8 pb-8 border-b border-gray-800">
+
+                <!-- Brand -->
+                <a id="logo-4" href="#" class="flex items-center gap-2 overflow-hidden">
+                    <div class="w-8 h-8 bg-lime rounded-full flex items-center justify-center">
+                        <svg class="w-5 h-5 text-dark fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold text-white">Positivus</span>
+                </a>
+
+                <!-- Footer Nav Links -->
+                <div class="flex flex-wrap justify-center gap-6 text-base text-gray-300">
+                    <a href="#about" class="hover:text-lime transition-colors">About us</a>
+                    <a href="#services" class="hover:text-lime transition-colors">Services</a>
+                    <a href="#use-cases" class="hover:text-lime transition-colors">Use Cases</a>
+                    <a href="#process" class="hover:text-lime transition-colors">Pricing</a>
+                    <a href="#team" class="hover:text-lime transition-colors">Blog</a>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-lime transition-colors"
+                        aria-label="LinkedIn">
+                        <span class="font-bold">in</span>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-lime transition-colors"
+                        aria-label="Facebook">
+                        <span class="font-bold">f</span>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white text-dark flex items-center justify-center hover:bg-lime transition-colors"
+                        aria-label="Twitter">
+                        <span class="font-bold">x</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Middle Footer Bar: Contact Info & Newsletter -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Contact Block -->
+                <div class="space-y-4">
+                    <span
+                        class="bg-lime text-dark font-semibold px-2 py-1 rounded text-sm uppercase inline-block">Contact
+                        us:</span>
+                    <p class="text-gray-300">Email: info@positivus.com</p>
+                    <p class="text-gray-300">Phone: 555-567-8901</p>
+                    <p class="text-gray-300">Address: 1234 Main St, Moonstone City, Stardust State 12345</p>
+                </div>
+
+                <!-- Newsletter Subscribe Form -->
+                <div class="bg-[#292A32] p-8 rounded-[20px] flex flex-col sm:flex-row items-center gap-4">
+                    <input type="email" placeholder="Email"
+                        class="w-full px-5 py-3 rounded-xl bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-lime">
+                    <button id="subscribe-btn"
+                        class="w-full sm:w-auto whitespace-nowrap px-6 py-3 bg-lime text-dark font-medium rounded-xl hover:bg-white transition-colors">
+                        Subscribe to news
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div
+                class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between text-sm text-gray-400 gap-4">
+                <p>&copy; 2026 Positivus. All Rights Reserved.</p>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT INTERACTIVITY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/all.js"
+        integrity="sha512-Lih9jQSv5CS2t9EJ8XAWw04Rb29RSYolcBApmENWnv/QeUF+G7GazUwvnVlQr9zfb3gfCcl42mCRiL46Z5G+pA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"
+        integrity="sha512-OaIE7ud4P04EhnBuhEcm0wQSceIxbi2pV03oBLS/+F6ampfxsnxcIxOp7H2eF9G7N0kEht0VAzOLG+dTLSo17Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+        <script>
+  // 1. Initialize Lenis
+  const lenis = new Lenis({
+    duration: 1.8, // Higher values (e.g. 1.5 - 2.2) create a slower, heavier feel
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth cubic easing curve
+    smoothWheel: true,
+    wheelMultiplier: 0.7, // Lower value slows down scroll wheel velocity
+  });
+
+  // 2. Continuous animation loop using requestAnimationFrame
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>
+    <script src="script.js"></script>
+</body>
+
+</html>
